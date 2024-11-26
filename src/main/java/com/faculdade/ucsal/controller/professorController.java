@@ -3,16 +3,15 @@ package com.faculdade.ucsal.controller;
 import com.faculdade.ucsal.entity.professor;
 import com.faculdade.ucsal.service.dadosListagem;
 import com.faculdade.ucsal.service.dadosProf;
+import com.faculdade.ucsal.service.dadosUp;
 import com.faculdade.ucsal.service.professorRepository;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.function.Function;
 
 @RestController
 @RequestMapping("professor")
@@ -31,6 +30,12 @@ public class professorController {
         return repository.findAll(pageable).map(dadosListagem::new);
     }
 
+    @PutMapping
+    @Transactional
+    public void update(@RequestBody dadosUp up){
+    var prof = repository.getReferenceById(up.id());
+    prof.update(up);
 
+    }
 
 }

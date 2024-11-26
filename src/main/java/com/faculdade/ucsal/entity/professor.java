@@ -2,6 +2,7 @@ package com.faculdade.ucsal.entity;
 
 
 import com.faculdade.ucsal.service.dadosProf;
+import com.faculdade.ucsal.service.dadosUp;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -33,5 +34,18 @@ public class professor {
         this.email= dados.email();
         this.telefone= dados.telefone();
         this.cpf= dados.cpf();
+    }
+
+
+    public void update(dadosUp up) {
+        if(up.email()!= null){
+            this.email= up.email();
+        }
+        if(up.nome()!= null){
+            this.nome= up.nome();
+        }
+        if(up.telefone()!= null){
+            this.telefone= up.telefone();
+        }
     }
 }
